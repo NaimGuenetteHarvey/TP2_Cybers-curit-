@@ -12,7 +12,7 @@ Voici les étapes détaillées pour pouvoir modifier le courriel / téléphone s
 
 
 ## Correctif 1
-
+L'endurcicement de SSH 
 Commandes à effectuer ou étapes à mettre en place. 
 
 Capture d'écran de l'exploit qui ne fonctionne plus.
