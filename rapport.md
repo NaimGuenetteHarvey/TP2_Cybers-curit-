@@ -15,7 +15,7 @@ Ce correctif a pour objectif d'empêcher la modification du siteWeb à distance.
 Les commandes utilisées sont "sudo chmod 750 /var/www/html" et "sudo chown -R www-data:www-data /var/www/html". 
 La première commande chmod 750 permet de changer les permissions. Le 7 permet la lecture, écriture et l'exécution pour le propriétaire du dossier (www-data). Le 5 permet la lecture et exécution pour le groupe (www-data). Le 0 permet de donner aucun droit pour les autres utilisateurs comme bob. Pour la deuxième commande, elle permet de modifier le propriétaire et le groupe. Le -R applique le changement à tout le dossier. Cela permet au propriétaire d'avoir tout les permissions en retirant ceux de bob. 
 Avant le correctif bob avait le droit de modifier le fichier web "Contact.html et realisation.html", car les permissions étaient pas limitées. Ensuite après avoir limiter les permissions, bob ne pouvait plus modifier les pages.
-![Correctif 2 permission](monimage.png)
+![Correctif 2 permission](Correctif 2 permission.png)
 
 
 ## Correctif 2 (indépendant du correctif 1)
