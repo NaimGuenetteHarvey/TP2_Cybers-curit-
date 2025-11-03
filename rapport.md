@@ -12,14 +12,16 @@ Voici les étapes détaillées pour pouvoir modifier le courriel / téléphone s
 
 
 ## Correctif 1
-L'endurcicement de SSH 
-Commandes à effectuer ou étapes à mettre en place. 
+
+
 
 Capture d'écran de l'exploit qui ne fonctionne plus.
 
 ## Correctif 2 (indépendant du correctif 1)
+L'endurcicement de SSH est le premier correctif. 
+Les commandes utilisées pour mettre fin à l'étape 2/3 sont "sudo ufw status" pour pouvoir voir l'état du pare feu uwf. Il apparait "Statuts: Inactive donc il n'était pas activé. Par la suite, j'ai utilisé, "sudo ufw enable" pour activer le pare feu. Puis ensuite, j'ai utilisé "sudo ufw deny 22" pour bloquer tout le trafic qui se dirige vers le port 22 qui est le port (ssh).
 
-Commandes à effectuer ou étapes à mettre en place.
+![Uploading Correctif 1 SSH.png…]()
 
 Capture d'écran de l'exploit qui ne fonctionne plus. 
 
