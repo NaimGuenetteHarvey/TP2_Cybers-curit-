@@ -15,23 +15,16 @@ Ce correctif a pour objectif d'empêcher la modification du siteWeb à distance.
 Les commandes utilisées sont "sudo chmod 750 /var/www/html" et "sudo chown -R www-data:www-data /var/www/html". 
 La première commande chmod 750 permet de changer les permissions. Le 7 permet la lecture, écriture et l'exécution pour le propriétaire du dossier (www-data). Le 5 permet la lecture et exécution pour le groupe (www-data). Le 0 permet de donner aucun droit pour les autres utilisateurs comme bob. Pour la deuxième commande, elle permet de modifier le propriétaire et le groupe. Le -R applique le changement à tout le dossier. Cela permet au propriétaire d'avoir tout les permissions en retirant ceux de bob. 
 Avant le correctif bob avait le droit de modifier le fichier web "Contact.html et realisation.html", car les permissions étaient pas limitées. Ensuite après avoir limiter les permissions, bob ne pouvait plus modifier les pages.
-![Correctif 2 permission](Correctif 2 permission.png)
-![Correctif 2 permission Commande]
-
 
 ## Correctif 2 (indépendant du correctif 1)
 L'endurcicement de SSH est le deuxième correctif. 
 Les commandes utilisées pour mettre fin à l'étape 2/3 sont "sudo ufw status" pour pouvoir voir l'état du pare feu uwf. Il apparait "Statuts: Inactive donc il n'était pas activé. Par la suite, j'ai utilisé, "sudo ufw enable" pour activer le pare feu. Puis ensuite, j'ai utilisé "sudo ufw deny 22" pour bloquer tout le trafic qui se dirige vers le port 22 qui est le port (ssh).
 Ce correctif ne permet plus à personne de se connecter à distance avec Putty, car bob se connectait au serveur grace à SSH. L'exploit est maintenant neutralisé. On peut l'appercevoir dans la photo ci-dessous, qu'il n'est pu possible d'avoir accès aux lignes de commandes.
 Le site web reste accessible et continue de fonctionner puisque HTTP n'est pas affecté. 
-![Correctif 1 SSH.png…]()
-![SiteWeb Fonctionnel après correctif 1.png…]()
-
-
-Capture d'écran de l'exploit qui ne fonctionne plus. 
 
 ## Correctif 3
+Ce correctif a pour objectif d'empêcher l'exploit 3. Les 2 commandes utilisées sont "sudo nano /etc/pam.d/common-password" et "sudo passwd --expire bob". La première commande permet d'écrire dans le dossier contenant les règles pour les mots de passe. Dans ce dossier, j'ai écris une ligne de code qui décide les règles pour les prochains mot de passe. 
+"password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1". Le retry permet de donner une limite d'essaie pour le mot de passe. Le minimum est de 10 caractère. Il doit avoir au moins 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère spécial. Ce correctif va permettre de renforcir le mot de passe. Ensuite, la deuxième commande va obliger bob a se trouver un nouveau mot de passe lors de sa prochaine connexion mais avec les conditions créés ci-dessus.
 
-Commandes à effectuer ou étapes à mettre en place. 
 
-Capture d'écran de l'exploit qui ne fonctionne plus.
+
